@@ -1,0 +1,55 @@
+{
+    "name": "greksazoo/unicredit-transfer-import-generator-hu",
+    "description": "Transfer Import file Generator for Unicredit Bank Zrt. (Hungary) Laravel",
+    "keywords": [
+        "greksazoo",
+        "unicredit-transfer-import-generator-hu"
+    ],
+    "homepage": "https://github.com/greksazoo/unicredit-transfer-import-generator-hu",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Zoltan Greksa",
+            "email": "zoli.greksa@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^8.0",
+        "nesbot/carbon": "^2.55", "ext-bcmath": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Greksazoo\\UnicreditTransferImportGeneratorHu\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Greksazoo\\UnicreditTransferImportGeneratorHu\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Greksazoo\\UnicreditTransferImportGeneratorHu\\UnicreditHuGeneratorServiceProvider"
+            ],
+            "aliases": {
+                "UnicreditHuGenerator": "Greksazoo\\UnicreditTransferImportGeneratorHu\\Facades\\UnicreditHuGeneratorFacade"
+            }
+        }
+    }
+}
