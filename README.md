@@ -1,9 +1,10 @@
-# Transfer Import file Generator for Unicredit Bank Zrt. (Hungary)
+# Transfer Import file Generator for Unicredit Bank Zrt. (Hungary) Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/greksazoo/unicredit-transfer-import-generator-hu.svg?style=flat-square)](https://packagist.org/packages/greksazoo/unicredit-transfer-import-generator-hu)
 [![Total Downloads](https://img.shields.io/packagist/dt/greksazoo/unicredit-transfer-import-generator-hu.svg?style=flat-square)](https://packagist.org/packages/greksazoo/unicredit-transfer-import-generator-hu)
 
-This package mainly used for generate Unicredit Bank (Hungary) HUF transfers import file. 
+This package mainly used for generate Unicredit Bank (Hungary) HUF transfers import file.
+This is for Laravel 8.0 or newer.
 
 ## Installation
 

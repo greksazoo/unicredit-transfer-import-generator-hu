@@ -1,6 +1,6 @@
 {
     "name": "greksazoo/unicredit-transfer-import-generator-hu",
-    "description": "Transfer Import file Generator for Unicredit Bank Zrt. (Hungary)",
+    "description": "Transfer Import file Generator for Unicredit Bank Zrt. (Hungary) Laravel",
     "keywords": [
         "greksazoo",
         "unicredit-transfer-import-generator-hu"
