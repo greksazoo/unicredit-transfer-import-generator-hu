@@ -130,7 +130,7 @@
 					$data .= str_repeat('0', 8); //Deal Ticket dátum
 					$data .= str_repeat('0', 6); //Deal Ticket sorszám
 					$data .= str_repeat(' ', 2); //kedvezményezett órszágkódja
-					$data .= '01A';//Statisztikai jogcím kód
+					$data .= '000';//Statisztikai jogcím kód
 					$data .= '000';//Tranzakció típusa
 					$data .= '000';//Tranzakció horodzó
 					$data .= str_repeat(' ', 45) . "\n"; //fentartott
