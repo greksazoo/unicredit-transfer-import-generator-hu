@@ -13,17 +13,18 @@
 		private $accountsum;
 		private $amountsum;
 		
-		public function __construct ($own_data, $transfers_data)
+		public function __construct ()
 		{
-			$this->own_data = (object)$own_data;
-			$this->transfers = $transfers_data;
+		
 			$this->recordsum = 0;
 			$this->accountsum = '000000000000000000000000';
 			$this->amountsum = 0;
 		}
 		
-		public function generateText ()
+		public function generateText ($own_data, $transfers_data)
 		{
+			$this->own_data = (object)$own_data;
+			$this->transfers = $transfers_data;
 			$currency = $this->get_currency($this->own_data);
 			$text = '';
 			$text .= $this->gen_header($currency);
@@ -33,9 +34,9 @@
 			return $text;
 		}
 		
-		public function generateFile ()
+		public function generateFile ($own_data, $transfers_data)
 		{
-			$text = $this->generateText();
+			$text = $this->generateText($own_data, $transfers_data);
 			$textFile = time() . '_file.text';
 			Storage::put(config('unicredithugenerator.path') . '/' . $textFile, $text);
 			

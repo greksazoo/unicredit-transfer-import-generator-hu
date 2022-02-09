@@ -1,6 +1,7 @@
 # Transfer Import file Generator for Unicredit Bank Zrt. (Hungary) Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/greksazoo/unicredit-transfer-import-generator-hu.svg?style=flat-square)](https://packagist.org/packages/greksazoo/unicredit-transfer-import-generator-hu)
+[![PHPStan](https://github.com/greksazoo/unicredit-transfer-import-generator-hu/actions/workflows/phpstan.yml/badge.svg)](https://github.com/greksazoo/unicredit-transfer-import-generator-hu/actions/workflows/phpstan.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/greksazoo/unicredit-transfer-import-generator-hu.svg?style=flat-square)](https://packagist.org/packages/greksazoo/unicredit-transfer-import-generator-hu)
 
 This package mainly used for generate Unicredit Bank (Hungary) HUF transfers import file.
@@ -17,8 +18,8 @@ composer require greksazoo/unicredit-transfer-import-generator-hu
 ## Usage
 
 ```php
-$uni = new UnicreditHuGenerator( 
-	    [
+$uni = new UnicreditHuGenerator();
+$data=[
             'currency'     => 'HUF',
             'account_number' => '11112222-33334444-00000000',
 	    ],
@@ -36,16 +37,15 @@ $uni = new UnicreditHuGenerator(
                 'amount'=>'3000100',
                 'notice'=>'ez egy hosszabb kozlemeny is lehet'
             ],
-        ]
-    );
-$filenev = $uni->generateFile();
+        ];
+$filenev = $uni->generateFile($data);
 return Storage::download($filenev,'data.pay');
 ```
 
 or simply generate only text in a variable:
 ```php
-$uni = new UnicreditHuGenerator( 
-	    [
+$uni = new UnicreditHuGenerator();
+$data= [
             'currency'     => 'HUF',
             'account_number' => '11112222-33334444-00000000',
 	    ],
@@ -63,9 +63,8 @@ $uni = new UnicreditHuGenerator(
                 'amount'=>'3000100',
                 'notice'=>'ez egy hosszabb kozlemeny is lehet'
             ],
-        ]
-    );
-$text = $uni->generateText();
+        ];
+$text = $uni->generateText($data);
 ```
 
 ### Changelog
