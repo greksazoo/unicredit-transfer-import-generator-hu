@@ -13,9 +13,9 @@
 		private $accountsum;
 		private $amountsum;
 		
+		
 		public function __construct ()
 		{
-		
 			$this->recordsum = 0;
 			$this->accountsum = '000000000000000000000000';
 			$this->amountsum = 0;
@@ -299,7 +299,7 @@
 			{
 				$haromelso = substr((string)$harom, 0, 1);
 				$haromveg = substr((string)$harom, -8);
-				if (strlen($haromelso) > 0)
+				if ($haromelso != '')
 				{
 					$ketto += (int)$haromelso;
 				}
@@ -312,7 +312,7 @@
 			{
 				$kettoelso = substr((string)$harom, 0, 1);
 				$kettoveg = substr((string)$harom, -8);
-				if (strlen($kettoelso) > 0)
+				if ($kettoelso != '')
 				{
 					$egy += (int)$kettoelso;
 				}
