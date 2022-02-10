@@ -7,13 +7,30 @@
 	
 	class UnicreditHuGenerator
 	{
+		/**
+		 * @var mixed
+		 */
 		private $own_data;
+		/**
+		 * @var mixed
+		 */
 		private $transfers;
+		/**
+		 * @var int
+		 */
 		private $recordsum;
+		/**
+		 * @var string
+		 */
 		private $accountsum;
+		/**
+		 * @var int
+		 */
 		private $amountsum;
 		
-		
+		/**
+		 *
+		 */
 		public function __construct ()
 		{
 			$this->recordsum = 0;
@@ -21,6 +38,12 @@
 			$this->amountsum = 0;
 		}
 		
+		/**
+		 * @param mixed $own_data
+		 * @param mixed $transfers_data
+		 *
+		 * @return string
+		 */
 		public function generateText ($own_data, $transfers_data)
 		{
 			$this->own_data = (object)$own_data;
@@ -34,6 +57,12 @@
 			return $text;
 		}
 		
+		/**
+		 * @param mixed $own_data
+		 * @param mixed $transfers_data
+		 *
+		 * @return string
+		 */
 		public function generateFile ($own_data, $transfers_data)
 		{
 			$text = $this->generateText($own_data, $transfers_data);
@@ -43,6 +72,11 @@
 			return config('unicredithugenerator.path') . '/' . $textFile;
 		}
 		
+		/**
+		 * @param string $currency
+		 *
+		 * @return string
+		 */
 		private function gen_header ($currency): string
 		{
 			
@@ -73,6 +107,11 @@
 			return $elso;
 		}
 		
+		/**
+		 * @param string $currency
+		 *
+		 * @return string
+		 */
 		private function gen_data ($currency): string
 		{
 			$data = '';
@@ -142,6 +181,11 @@
 			return $data;
 		}
 		
+		/**
+		 * @param string $currency
+		 *
+		 * @return string
+		 */
 		private function gen_trailer ($currency): string
 		{
 			if ($currency === 'HUF')
@@ -164,6 +208,12 @@
 			return $trailer;
 		}
 		
+		/**
+		 * @param mixed $acc_data
+		 * @param string $fill_char
+		 *
+		 * @return string
+		 */
 		private function get_account_number ($acc_data, $fill_char = ' '): string
 		{
 			if (property_exists($acc_data, 'account_number'))
@@ -179,6 +229,12 @@
 			return strlen($szlaszam) < 24 ? str_pad($szlaszam, 24, $fill_char, STR_PAD_RIGHT) : $szlaszam;
 		}
 		
+		/**
+		 * @param mixed $acc_data
+		 * @param string $fill_char
+		 *
+		 * @return string
+		 */
 		private function get_iban_account_number ($acc_data, $fill_char = ' '): string
 		{
 			if (property_exists($acc_data, 'iban_account_number'))
@@ -196,6 +252,11 @@
 			return str_pad($szlaszam, 34, $fill_char, STR_PAD_RIGHT);
 		}
 		
+		/**
+		 * @param string $iban
+		 *
+		 * @return bool
+		 */
 		private function checkIBAN($iban) {
 			
 			// Normalize input (remove spaces and make upcase)
@@ -225,6 +286,11 @@
 				return false;
 		}
 		
+		/**
+		 * @param mixed $acc_data
+		 *
+		 * @return string
+		 */
 		private function get_currency ($acc_data): string
 		{
 			if (property_exists($this->own_data, 'currency'))
@@ -235,7 +301,13 @@
 			return 'HUF';
 		}
 		
-		private function get_partner_name ($acc_data,$length=32): string
+		/**
+		 * @param mixed $acc_data
+		 * @param int $length
+		 *
+		 * @return string
+		 */
+		private function get_partner_name ($acc_data, $length=32): string
 		{
 			if (property_exists($acc_data, 'partner_name'))
 			{
@@ -245,6 +317,11 @@
 			return str_pad('nincspartner', $length);
 		}
 		
+		/**
+		 * @param mixed $acc_data
+		 *
+		 * @return string
+		 */
 		private function get_osszeg ($acc_data): string
 		{
 			if (property_exists($acc_data, 'amount'))
@@ -261,6 +338,11 @@
 			return str_pad('0', 13, '0', STR_PAD_LEFT) . '00';
 		}
 		
+		/**
+		 * @param mixed $acc_data
+		 *
+		 * @return int
+		 */
 		private function get_osszeg_num ($acc_data): int
 		{
 			if (property_exists($acc_data, 'amount'))
@@ -277,6 +359,11 @@
 			return 0;
 		}
 		
+		/**
+		 * @param mixed $acc_data
+		 *
+		 * @return string
+		 */
 		private function get_datum ($acc_data): string
 		{
 			if (property_exists($acc_data, 'date'))
@@ -287,6 +374,11 @@
 			return str_pad('0', 8, '0', STR_PAD_LEFT);
 		}
 		
+		/**
+		 * @param string $account_number
+		 *
+		 * @return string
+		 */
 		private function sum_account_number ($account_number): string
 		{
 			$account_number = str_pad($account_number, 24, '0', STR_PAD_RIGHT);
